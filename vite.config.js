@@ -1,29 +1,26 @@
+// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
+import path from 'node:path'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react( )],
-  base: './', // <--- Esta linha foi adicionada/modificada
+  plugins: [react()],
+  // Em Netlify (domínio na raiz) use base "/"
+  // (base "./" é pra GitHub Pages e costuma causar tela branca no Netlify)
+  base: '/',
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
     host: true,
     port: 5173,
     strictPort: true,
-    hmr: {
-      overlay: false,
-    },
+    hmr: { overlay: false },
   },
   build: {
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-      },
-    },
+    outDir: 'dist',
+    sourcemap: true, // ajuda a debugar se algo quebrar
   },
 })
