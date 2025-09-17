@@ -1,7 +1,12 @@
 [build]
-  command = "pnpm install && pnpm run build"
+  command = "pnpm install --store=node_modules/.pnpm-store && pnpm run build"
   publish = "dist"
   base = "/"
+
+[build.environment]
+  NPM_PACKAGE_MANAGER = "pnpm"
+  PNPM_VERSION = "latest"
+  NPM_FLAGS = "--no-audit --no-fund"
 
 [[redirects]]
   from = "/*"
