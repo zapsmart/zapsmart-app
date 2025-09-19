@@ -5,9 +5,7 @@ import path from 'node:path'
 
 export default defineConfig({
   plugins: [react()],
-  // Em Netlify (domínio na raiz) use base "/"
-  // (base "./" é pra GitHub Pages e costuma causar tela branca no Netlify)
-  base: '/',
+  base: '/', // Mantenha '/' para Netlify com domínio na raiz
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -20,7 +18,14 @@ export default defineConfig({
     hmr: { overlay: false },
   },
   build: {
-    outDir: 'dist',
-    sourcemap: true, // ajuda a debugar se algo quebrar
+    outDir: 'dist', // Garante que a saída seja para a pasta 'dist'
+    sourcemap: true, // Mantém para depuração
+    // rollupOptions: {
+    //   output: { // Remova ou comente esta seção se você a adicionou antes
+    //     entryFileNames: `assets/[name].js`,
+    //     chunkFileNames: `assets/[name].js`,
+    //     assetFileNames: `assets/[name].[ext]`
+    //   }
+    // },
   },
 })
