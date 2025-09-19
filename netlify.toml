@@ -8,7 +8,11 @@
   PNPM_VERSION = "latest"
   NPM_FLAGS = "--no-audit --no-fund"
 
-  [[redirects]]
+# Regras de redirecionamento e reescrita para Single Page Applications (SPAs)
+# Garante que todas as rotas que não correspondem a um arquivo existente
+# sejam redirecionadas para o index.html, permitindo o roteamento do lado do cliente.
+# O 'force = false' é crucial para que arquivos estáticos (JS, CSS, imagens) sejam servidos normalmente.
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
